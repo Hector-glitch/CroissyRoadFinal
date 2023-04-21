@@ -1,4 +1,0 @@
-[LLISTA DE PUNTUACIONS]
-Pep: 2
-Armando: 10
-Pep: 3

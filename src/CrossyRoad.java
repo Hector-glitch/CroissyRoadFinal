@@ -1,11 +1,7 @@
 import constants.Constants;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Random;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class CrossyRoad {
 
@@ -34,8 +30,9 @@ public class CrossyRoad {
             checkCollisions(); // Comprovar si s'ha produït una col·lisió
             printBoard(); // Imprimir el tauler
         }
-        showScore();
+        ordenarPuntuacions("src/files/score.txt");
         saveScore();
+
     }
 
     private static void initializeBoard() {
@@ -164,22 +161,53 @@ public class CrossyRoad {
         Scanner teclat = new Scanner(System.in);
         String name = teclat.nextLine();
         try {
-            FileWriter writer = new FileWriter("score.txt", true);
+            FileWriter writer = new FileWriter("src/files/score.txt", true);
             writer.write(name + ": " + score + "\n");
             writer.close();
+            ordenarPuntuacions("src/files/score.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private static void showScore() {
+
+    public static void ordenarPuntuacions(String nomFitxer) {
+        Map<String, Integer> puntuacions = new TreeMap<>();
+
         try {
-            Scanner scanner = new Scanner(new File("score.txt"));
-            while (scanner.hasNextLine()) {
-                System.out.println(scanner.nextLine());
+            BufferedReader br = new BufferedReader(new FileReader(nomFitxer));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] dades = linea.split(":");
+                if (dades.length >= 2) {
+                    String nomJugador = dades[0].trim();
+                    int puntuacio = Integer.parseInt(dades[1].trim());
+
+                    if (puntuacions.containsKey(nomJugador)) {
+                        puntuacions.put(nomJugador, puntuacions.get(nomJugador) + puntuacio);
+                    } else {
+                        puntuacions.put(nomJugador, puntuacio);
+                    }
+                } else {
+                    System.out.println("Error: Format de línia incorrecte: " + linea);
+                }
             }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("No s'ha trobat el fitxer de puntuacions.");
+            br.close();
+
+            List<Map.Entry<String, Integer>> llistaOrdenada = new ArrayList<>(puntuacions.entrySet());
+            Collections.sort(llistaOrdenada, new Comparator<Map.Entry<String, Integer>>() {
+                @Override
+                public int compare(Map.Entry<String, Integer> entrada1, Map.Entry<String, Integer> entrada2) {
+                    return entrada2.getValue().compareTo(entrada1.getValue());
+                }
+            });
+
+            System.out.println("[LLISTA DE PUNTUACIONS]");
+            for (Map.Entry<String, Integer> entrada : llistaOrdenada) {
+                System.out.println(entrada.getKey() + ": " + entrada.getValue());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
