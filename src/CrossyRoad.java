@@ -35,6 +35,7 @@ public class CrossyRoad {
 
     }
 
+
     private static void initializeBoard() {
         // Inicializar el tauler amb espais buits
         for (int row = 0; row < HEIGHT; row++) {

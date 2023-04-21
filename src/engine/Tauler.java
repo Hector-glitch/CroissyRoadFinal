@@ -1,21 +1,6 @@
 package engine;
 
 /*public class Tauler {
-    private static final int WIDTH = 10; // Ample de la pantalla
-    private static final int HEIGHT = 10; // Altura de la pantalla
-    private static final char EMPTY_SYMBOL = '.'; // Símbol espai buit
-    private static final char PLAYER_SYMBOL = 'P'; // Símbol Jugador
-    private static final char OBSTACLE_SYMBOL = '#'; // Símbol Obstacle
-    private static final char GOAL_SYMBOL = 'G'; // Símbol Final
-    private static final int GOAL_ROW = 0; // Fila de la meta
-    private static int PLAYER_START_ROW = HEIGHT - 1; // Fila on comença el jugador
-    private static int PLAYER_START_COL = WIDTH / 2; // Columna on comença el jugador
-
-    private static final char[][] board = new char[HEIGHT][WIDTH]; // Tauler del joc
-    private static int score = 0; // Puntuació Jugador
-    private static boolean gameOver = false; // Variable para indicar si el joc s'ha acabat
-
-
     private static void initializeBoard() {
         // Inicializar el tauler amb espais buits
         for (int row = 0; row < HEIGHT; row++) {
