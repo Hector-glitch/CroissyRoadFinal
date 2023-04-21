@@ -1,18 +1,33 @@
 package inici;
 
-/*
+import java.util.Scanner;
+
+import objects.Obstacles;
+import constants.Constants;
+import tauler.Mapa;
+import objects.Jugador;
+import files.score;
+
 public class Main {
-public static void main(String[] args) {
-        initializeBoard(); // Inicializar el tauler
-        printBoard(); // Imprimir el tauler
+    /**
+     * Mètode principal del joc CrossyRoad.
+     * Inicialitza el tauler, imprimeix el tauler i permet al jugador moure's fins que el joc s'acabi.
+     * Després d'acabar el joc, es realitza l'ordenació de les puntuacions i es guarda la puntuació del jugador.
+     */
+    public static void main(String[] args) {
+        Mapa.initializeBoard(); // Inicializar el tauler
+        Mapa.printBoard(); // Imprimir el tauler
         Scanner scanner = new Scanner(System.in);
 
-        while (!gameOver) {
-            movePlayer(scanner); // Moure el jugador
-            moveObstacles(); // Moure els obstacles
-            checkGoal(); // Comprovar si s'ha arribat a la meta
-            checkCollisions(); // Comprovar si s'ha produït una col·lisió
-            printBoard(); // Imprimir el tauler
+        while (!Constants.getGameOver()) {
+            Jugador.movePlayer(scanner); // Moure el jugador
+            Obstacles.moveObstacles(); // Moure els obstacles
+            Mapa.checkGoal(); // Comprovar si s'ha arribat a la meta
+            Obstacles.checkCollisions(); // Comprovar si s'ha produït una col·lisió
+            Mapa.printBoard(); // Imprimir el tauler
         }
+        score.ordenarPuntuacions("src/files/score.txt");//Mostrar la puntuació del fitxer ordenada de major a menor
+        score.saveScore();//Guardar la puntuació al fitxer score.txt
+
     }
-}*/
+}

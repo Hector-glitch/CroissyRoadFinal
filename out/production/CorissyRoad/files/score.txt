@@ -1,10 +1,1 @@
-Pep: 2
-Armando: 10
-Pep: 3
-kdsf: 0
-w: 1
-ds: 1
-da: 2
-asxda: 5
-asd: 1
-hector: 1
+
