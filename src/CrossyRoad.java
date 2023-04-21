@@ -1,3 +1,4 @@
+import constants.Constants;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,17 +9,16 @@ import java.util.Scanner;
 
 public class CrossyRoad {
 
-    private static final int WIDTH = 10; // Ample de la pantalla
-    private static final int HEIGHT = 10; // Altura de la pantalla
-    private static final char EMPTY_SYMBOL = '.'; // Símbol espai buit
-    private static final char PLAYER_SYMBOL = 'P'; // Símbol Jugador
-    private static final char OBSTACLE_SYMBOL = '#'; // Símbol Obstacle
-    private static final char GOAL_SYMBOL = 'G'; // Símbol Final
-    private static final int GOAL_ROW = 0; // Fila de la meta
+    private static final int WIDTH = Constants.getWIDTH(); // Ample de la pantalla
+    private static final int HEIGHT = Constants.getHEIGHT(); // Altura de la pantalla
+    private static final char EMPTY_SYMBOL = Constants.getEmptySymbol(); // Símbol espai buit
+    private static final char PLAYER_SYMBOL = Constants.getPlayerSymbol(); // Símbol Jugador
+    private static final char OBSTACLE_SYMBOL = Constants.getObstacleSymbol(); // Símbol Obstacle
+    private static final char GOAL_SYMBOL = Constants.getGoalSymbol(); // Símbol Final
+    private static final int GOAL_ROW = Constants.getGoalRow(); // Fila de la meta
     private static int PLAYER_START_ROW = HEIGHT - 1; // Fila on comença el jugador
     private static int PLAYER_START_COL = WIDTH / 2; // Columna on comença el jugador
-
-    private static final char[][] board = new char[HEIGHT][WIDTH]; // Tauler del joc
+    private static final char[][] board = Constants.getBoard(); // Tauler del joc
     private static int score = 0; // Puntuació Jugador
     private static boolean gameOver = false; // Variable para indicar si el joc s'ha acabat
 
