@@ -1,1 +1,2 @@
 Hector: 10
+Pep: 4
