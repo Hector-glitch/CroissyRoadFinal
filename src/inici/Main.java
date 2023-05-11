@@ -19,11 +19,12 @@ public class Main {
     public static void main(String[] args) {
         Mapa.initializeBoard(); // Inicializar el tauler
         Mapa.printBoard(); // Imprimir el tauler
-        Scanner scanner = new Scanner(System.in);
+        Jugador player = new Jugador();
+        Obstacles obstacle = new Obstacles();
 
         while (!Constants.getGameOver()) {
-            Jugador.movePlayer(scanner); // Moure el jugador
-            Obstacles.moveObstacles(); // Moure els obstacles
+            player.moure(); // Moure el jugador
+            obstacle.moure(); // Moure els obstacles
             Mapa.checkGoal(); // Comprovar si s'ha arribat a la meta
             Obstacles.checkCollisions(); // Comprovar si s'ha produït una col·lisió
             Mapa.printBoard(); // Imprimir el tauler
